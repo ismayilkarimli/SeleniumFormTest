@@ -78,7 +78,7 @@ public class FormTest {
     }
 
     @Test
-    @DisplayName("Test form submission missing name")
+    @DisplayName("Form submission with missing name should fail")
     void testFormSubmissionWithMissingName() {
         // find and click on choice where text is "Option 3"
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text() = 'Option 3']")))).click();
@@ -115,7 +115,7 @@ public class FormTest {
     }
 
     @Test
-    @DisplayName("Test form submission invalid email")
+    @DisplayName("Form submission with invalid email should fail")
     void testFormSubmissionWithInvalidEmail() {
         // find and click on choice where text is "Option 3"
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text() = 'Option 3']")))).click();
@@ -152,7 +152,7 @@ public class FormTest {
     }
 
     @Test
-    @DisplayName("Test form submission missing email")
+    @DisplayName("Form submission with missing email should fail")
     void testFormSubmissionWithMissingEmail() {
         // find and click on choice where text is "Option 3"
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text() = 'Option 3']")))).click();
@@ -189,7 +189,7 @@ public class FormTest {
     }
 
     @Test
-    @DisplayName("Test form submission missing address")
+    @DisplayName("Form submission with missing address should fail")
     void testFormSubmissionWithMissingAddress() {
         // find and click on choice where text is "Option 3"
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text() = 'Option 3']")))).click();
@@ -224,5 +224,74 @@ public class FormTest {
                 && (alertElement.getText().contains("See on kohustuslik küsimus") || alertElement.getText().contains("This is a required question"))
         );
     }
+
+    @Test
+    @DisplayName("Form submission with missing phone number should succeed")
+    void testFormSubmissionWithMissingPhone() {
+        // find and click on choice where text is "Option 3"
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text() = 'Option 3']")))).click();
+
+        // find element where data-param contains "Name" and find input element with type text within it
+        var nameSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Name\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(nameSection.findElement(By.xpath(".//input[@type='text']")))).sendKeys("John");
+
+        // find element where data-param contains "Email" and find input element with type text within it
+        var emailSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Email\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(emailSection.findElement(By.xpath(".//input[@type='email']")))).sendKeys("test@example.com");
+
+        // find element where data-param contains "Address" and find input element with type text within it
+        var addressSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Address\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(addressSection.findElement(By.xpath(".//textarea")))).sendKeys("");
+
+        // find element where data-param contains "Phone number" and find input element with type text within it
+        var phoneSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Phone number\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(phoneSection.findElement(By.xpath(".//input[@type='text']")))).sendKeys("");
+
+        // find element where data-param contains "Comments" and find input element with type text within it
+        var commentsSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Comments\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(commentsSection.findElement(By.xpath(".//textarea")))).sendKeys("Lorem ipsum dolor sit amet");
+
+        // find div element where role attribute is "button" and locate element within it where
+        // text value is "Submit" or "Saada ära" and click on it
+        var submitButton = driver.findElement((By.xpath("//div[@role='button' and .//*[contains(text(), 'Submit') or contains(text(), 'Saada ära')]]")));
+        wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
+
+        assertTrue(driver.getPageSource().contains("Thanks for submitting your contact info!"));
+    }
+
+    @Test
+    @DisplayName("Form submission with missing comments should succeed")
+    void testFormSubmissionWithMissingComments() {
+        // find and click on choice where text is "Option 3"
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//span[text() = 'Option 3']")))).click();
+
+        // find element where data-param contains "Name" and find input element with type text within it
+        var nameSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Name\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(nameSection.findElement(By.xpath(".//input[@type='text']")))).sendKeys("John");
+
+        // find element where data-param contains "Email" and find input element with type text within it
+        var emailSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Email\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(emailSection.findElement(By.xpath(".//input[@type='email']")))).sendKeys("test@example.com");
+
+        // find element where data-param contains "Address" and find input element with type text within it
+        var addressSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Address\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(addressSection.findElement(By.xpath(".//textarea")))).sendKeys("");
+
+        // find element where data-param contains "Phone number" and find input element with type text within it
+        var phoneSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Phone number\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(phoneSection.findElement(By.xpath(".//input[@type='text']")))).sendKeys("+37211111111");
+
+        // find element where data-param contains "Comments" and find input element with type text within it
+        var commentsSection = driver.findElement(By.xpath("//*[contains(@data-params, '\"Comments\"')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(commentsSection.findElement(By.xpath(".//textarea")))).sendKeys("");
+
+        // find div element where role attribute is "button" and locate element within it where
+        // text value is "Submit" or "Saada ära" and click on it
+        var submitButton = driver.findElement((By.xpath("//div[@role='button' and .//*[contains(text(), 'Submit') or contains(text(), 'Saada ära')]]")));
+        wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
+
+        assertTrue(driver.getPageSource().contains("Thanks for submitting your contact info!"));
+    }
+
 
 }
