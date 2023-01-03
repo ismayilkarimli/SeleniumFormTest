@@ -19,8 +19,10 @@ mvnw.cmd site
 ./mvnw site
 ```
 
-Generated HTML report will be available at. Open it using a browser of your choice.
+Generated HTML report will be available at:
 
 ```bash
 target/site/surefire-report.html
 ```
+
+Open it using a browser of your choice.
