@@ -293,5 +293,4 @@ public class FormTest {
         assertTrue(driver.getPageSource().contains("Thanks for submitting your contact info!"));
     }
 
-
 }
