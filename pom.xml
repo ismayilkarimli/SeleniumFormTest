@@ -33,7 +33,11 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>3.0.0-M7</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>4.0.0-M4</version>
+        </dependency>
 
     </dependencies>
 
@@ -46,11 +50,29 @@
                 <version>3.0.0-M7</version>
                 <configuration>
                     <!-- specify test report format and output directory -->
-                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+<!--                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>-->
                     <reportFormat>html</reportFormat>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>4.0.0-M4</version>
+<!--                <configuration>-->
+<!--                    <outputDirectory>${project.build.directory}/surefire-reports</outputDirectory>-->
+<!--                </configuration>-->
+            </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M7</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
