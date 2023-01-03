@@ -1,7 +1,7 @@
 # SeleniumFormTest
 
 ## Pre-requisites
-You'll need Java 17+
+You'll need Java 17+. Chromedrivers included are for Chrome 108 but it might work for different versions.
 
 ## Usage
 If you have Maven installed, then you can run:
