@@ -21,7 +21,7 @@ public class FormTest {
     private static final String MAC_INTEL_DRIVER = System.getProperty("user.dir") + File.separator + "drivers" + File.separator + "macos" + File.separator + "chromedriver_mac_intel";
     private static final String MAC_ARM_DRIVER = System.getProperty("user.dir") + File.separator + "drivers" + File.separator + "macos" + File.separator + "chromedriver_mac_arm";
     private static final String LINUX_DRIVER = System.getProperty("user.dir") + File.separator + "drivers" + File.separator + "linux" + File.separator + "chromedriver_linux";
-    private static final String WINDOWS_DRIVER = System.getProperty("user.dir") + File.separator + "drivers" + File.separator + "windows" + File.separator + "chromedriver_linux";
+    private static final String WINDOWS_DRIVER = System.getProperty("user.dir") + File.separator + "drivers" + File.separator + "windows" + File.separator + "chromedriver_windows.exe";
 
     @BeforeAll
     static void init() {
